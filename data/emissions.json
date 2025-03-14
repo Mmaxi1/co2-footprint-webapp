@@ -1,0 +1,122 @@
+[
+  {
+    "land": "Deutschland",
+    "unternehmen": "Volkswagen",
+    "emissionen": 99.2
+  },
+  {
+    "land": "Deutschland",
+    "unternehmen": "BASF",
+    "emissionen": 74.5
+  },
+  {
+    "land": "USA",
+    "unternehmen": "ExxonMobil",
+    "emissionen": 312.5
+  },
+  {
+    "land": "USA",
+    "unternehmen": "Chevron",
+    "emissionen": 280.3
+  },
+  {
+    "land": "China",
+    "unternehmen": "Sinopec",
+    "emissionen": 350.1
+  },
+  {
+    "land": "China",
+    "unternehmen": "PetroChina",
+    "emissionen": 300.4
+  },
+  {
+    "land": "Frankreich",
+    "unternehmen": "TotalEnergies",
+    "emissionen": 180.7
+  },
+  {
+    "land": "Frankreich",
+    "unternehmen": "Engie",
+    "emissionen": 150.2
+  },
+  {
+    "land": "Großbritannien",
+    "unternehmen": "BP",
+    "emissionen": 220.8
+  },
+  {
+    "land": "Großbritannien",
+    "unternehmen": "GlaxoSmithKline",
+    "emissionen": 60.0
+  },
+  {
+    "land": "Italien",
+    "unternehmen": "Eni",
+    "emissionen": 130.5
+  },
+  {
+    "land": "Italien",
+    "unternehmen": "Fiat",
+    "emissionen": 90.0
+  },
+  {
+    "land": "Kanada",
+    "unternehmen": "Suncor",
+    "emissionen": 140.3
+  },
+  {
+    "land": "Kanada",
+    "unternehmen": "Imperial Oil",
+    "emissionen": 110.0
+  },
+  {
+    "land": "Japan",
+    "unternehmen": "Toyota",
+    "emissionen": 200.2
+  },
+  {
+    "land": "Japan",
+    "unternehmen": "Mitsubishi",
+    "emissionen": 170.0
+  },
+  {
+    "land": "Australien",
+    "unternehmen": "BHP",
+    "emissionen": 250.6
+  },
+  {
+    "land": "Australien",
+    "unternehmen": "Woodside",
+    "emissionen": 190.5
+  },
+  {
+    "land": "Indien",
+    "unternehmen": "Reliance Industries",
+    "emissionen": 310.0
+  },
+  {
+    "land": "Indien",
+    "unternehmen": "Tata Motors",
+    "emissionen": 80.0
+  },
+  {
+    "land": "Brasilien",
+    "unternehmen": "Petrobras",
+    "emissionen": 210.4
+  },
+  {
+    "land": "Brasilien",
+    "unternehmen": "Vale",
+    "emissionen": 160.0
+  },
+  {
+    "land": "Russland",
+    "unternehmen": "Rosneft",
+    "emissionen": 290.0
+  },
+  {
+    "land": "Russland",
+    "unternehmen": "Gazprom",
+    "emissionen": 270.0
+  }
+]
