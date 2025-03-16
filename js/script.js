@@ -34,6 +34,30 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(initApp, 500);
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM vollständig geladen.");
+
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+    // Dark Mode aus localStorage abrufen
+    if (localStorage.getItem("darkMode") === "enabled") {
+        document.documentElement.classList.add("dark");
+        darkModeToggle.textContent = "☀️"; // Wechsel zu Sonne-Icon
+    }
+
+    // Dark Mode umschalten
+    darkModeToggle.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+        if (document.documentElement.classList.contains("dark")) {
+            localStorage.setItem("darkMode", "enabled");
+            darkModeToggle.textContent = "☀️"; // Sonne für Hell-Modus
+        } else {
+            localStorage.setItem("darkMode", "disabled");
+            darkModeToggle.textContent = "🌙"; // Mond für Dunkel-Modus
+        }
+    });
+});
+
 // Asynchrone Funktion zum Laden der Daten
 async function initApp() {
     try {
@@ -49,6 +73,7 @@ async function initApp() {
         originalData = data;
 
         populateTable(data);
+        generateChart(data);
         populateFilters(data);
 
         // Formular-Reset: Tabelle mit Originaldaten neu befüllen
@@ -63,6 +88,46 @@ async function initApp() {
         document.querySelector("main").innerHTML +=
             "<p class='text-red-500 font-bold mt-4'>Daten konnten nicht geladen werden. Überprüfe den Server oder die Datei 'data/emissions.json'.</p>";
     }
+}
+
+function generateChart(data) {
+    const countryEmissions = {};
+
+    // Emissionen pro Land berechnen
+    data.forEach(entry => {
+        if (!countryEmissions[entry.land]) {
+            countryEmissions[entry.land] = 0;
+        }
+        countryEmissions[entry.land] += entry.emissionen;
+    });
+
+    // Labels & Werte für das Diagramm
+    const labels = Object.keys(countryEmissions);
+    const values = Object.values(countryEmissions);
+
+    // Chart.js Diagramm erstellen
+    const ctx = document.getElementById("co2Chart").getContext("2d");
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "CO₂-Emissionen (Mt CO₂)",
+                data: values,
+                backgroundColor: "rgba(22, 163, 74, 0.7)",
+                borderColor: "rgba(19, 129, 61, 1)",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
 // Befüllt die Tabelle mit den gegebenen Daten

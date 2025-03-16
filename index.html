@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/output.css">
   <!-- Optional: Google Font "Inter" -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -33,6 +34,9 @@
         <li><a href="#data" class="hover:underline transition-colors duration-200">Daten</a></li>
         <li><a href="#about" class="hover:underline transition-colors duration-200">Über uns</a></li>
         <li><a href="#contact" class="hover:underline transition-colors duration-200">Kontakt</a></li>
+        <button id="dark-mode-toggle" class="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white transition-colors">
+          🌙
+        </button>
       </ul>
     </nav>
     <!-- Burger-Button für Mobile -->
@@ -60,6 +64,13 @@
     <p class="mt-4 text-gray-600">
       Erhalte einen Überblick über die CO₂-Emissionen von Ländern und Unternehmen.
     </p>
+  </div>
+</section>
+
+<section id="chart" class="py-10">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-4">CO₂-Emissionen nach Ländern</h2>
+    <canvas id="co2Chart"></canvas>
   </div>
 </section>
 
@@ -121,9 +132,6 @@
             <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Rosneft</a></li>
             <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Gazprom</a></li>
           </ul>
-        </li>
-        <!-- Direktlink: Aktuelle Emissionen -->
-        <li><a href="#" class="sidebar-link block text-green-700 hover:text-green-800 transition-colors">Aktuelle Emissionen</a></li>
       </ul>
     </aside>
 
