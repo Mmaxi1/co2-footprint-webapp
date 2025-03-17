@@ -4,14 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="pageTitle">CO₂-Footprint – Emissionsübersicht</title>
-
   <link rel="stylesheet" href="css/output.css">
   <!-- Optional Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
-
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -22,261 +19,219 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-<!-- Fixe Navbar -->
+<!-- Header inkl. Navigation -->
 <header class="fixed top-0 left-0 right-0 bg-green-700 text-white shadow-lg z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-    <!-- Logo -->
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-        <!-- data-i18n="logoShort" ->  z.B. "CF" -->
+    <div class="logo-container flex items-center space-x-3">
+      <div class="logo w-10 h-10 bg-white rounded-full flex items-center justify-center">
         <span class="text-green-700 font-bold" data-i18n="logoShort">CF</span>
       </div>
-      <!-- data-i18n="logoFull" ->  z.B. "CO₂-Footprint" -->
       <span class="font-bold text-xl" data-i18n="logoFull">CO₂-Footprint</span>
     </div>
-
-    <!-- Desktop Navigation -->
-    <nav class="hidden md:block">
+    <nav class="desktop-nav hidden md:block">
       <ul class="flex space-x-6">
-        <!-- data-i18n="navHome" -> "Home", "Accueil", usw. -->
-        <li><a href="#home"    class="hover:underline transition-colors duration-200" data-i18n="navHome">Home</a></li>
-        <li><a href="#data"    class="hover:underline transition-colors duration-200" data-i18n="navData">Daten</a></li>
-        <li><a href="#about"   class="hover:underline transition-colors duration-200" data-i18n="navAbout">Über uns</a></li>
+        <li><a href="#home" class="hover:underline transition-colors duration-200" data-i18n="navHome">Home</a></li>
+        <li><a href="#data" class="hover:underline transition-colors duration-200" data-i18n="navData">Daten</a></li>
+        <li><a href="#about" class="hover:underline transition-colors duration-200" data-i18n="navAbout">Über uns</a></li>
         <li><a href="#contact" class="hover:underline transition-colors duration-200" data-i18n="navContact">Kontakt</a></li>
       </ul>
     </nav>
-
     <!-- Darkmode-Schalter -->
-    <label class="relative inline-flex items-center cursor-pointer">
-      <input type="checkbox" id="dark-mode-toggle" class="sr-only peer">
-      <div
-              class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300
-               dark:peer-focus:ring-gray-700 rounded-full peer dark:bg-gray-700
-               peer-checked:after:translate-x-full peer-checked:after:border-white
-               after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white
-               after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all
-               dark:border-gray-600 peer-checked:bg-green-600">
-      </div>
-    </label>
-
-    <!-- Burger-Button (Mobile) -->
-    <button id="burger-btn" class="md:hidden focus:outline-none">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 8h16M4 16h16">
-        </path>
-      </svg>
-    </button>
+    <div class="flex items-center space-x-4">
+      <label class="relative inline-flex items-center cursor-pointer">
+        <input type="checkbox" id="dark-mode-toggle" class="sr-only peer">
+        <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-700 rounded-full peer dark:bg-gray-700
+                      peer-checked:after:translate-x-full peer-checked:after:border-white
+                      after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white
+                      after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all
+                      dark:border-gray-600 peer-checked:bg-green-600">
+        </div>
+      </label>
+      <!-- Burger-Button für Mobile -->
+      <button id="burger-btn" class="md:hidden focus:outline-none" aria-label="Menü öffnen">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
+        </svg>
+      </button>
+    </div>
   </div>
-
   <!-- Mobile Navigation -->
-  <nav id="mobile-menu" class="md:hidden hidden bg-green-700">
+  <nav id="mobile-menu" class="mobile-nav md:hidden hidden bg-green-700">
     <ul class="px-4 pt-2 pb-4 space-y-1">
-      <li><a href="#home"    class="block hover:underline transition-colors duration-200" data-i18n="navHome">Home</a></li>
-      <li><a href="#data"    class="block hover:underline transition-colors duration-200" data-i18n="navData">Daten</a></li>
-      <li><a href="#about"   class="block hover:underline transition-colors duration-200" data-i18n="navAbout">Über uns</a></li>
+      <li><a href="#home" class="block hover:underline transition-colors duration-200" data-i18n="navHome">Home</a></li>
+      <li><a href="#data" class="block hover:underline transition-colors duration-200" data-i18n="navData">Daten</a></li>
+      <li><a href="#about" class="block hover:underline transition-colors duration-200" data-i18n="navAbout">Über uns</a></li>
       <li><a href="#contact" class="block hover:underline transition-colors duration-200" data-i18n="navContact">Kontakt</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- Startbereich: Home -->
-<section id="home" class="py-10">
-  <div class="max-w-7xl mx-auto px-4">
-    <!-- data-i18n="homeTitle" / "homeIntro" -->
-    <h1 class="text-3xl font-bold" data-i18n="homeTitle">Willkommen bei CO₂-Footprint</h1>
-    <p class="mt-4 text-gray-600" data-i18n="homeIntro">
-      Erhalte einen Überblick über die CO₂-Emissionen von Ländern und Unternehmen.
-    </p>
-  </div>
-</section>
+<!-- Hauptinhalt -->
+<main>
+  <!-- Home-Bereich -->
+  <section id="home" class="py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <h1 class="text-3xl font-bold" data-i18n="homeTitle">Willkommen bei CO₂-Footprint</h1>
+      <p class="mt-4 text-gray-600" data-i18n="homeIntro">
+        Erhalte einen Überblick über die CO₂-Emissionen von Ländern und Unternehmen.
+      </p>
+    </div>
+  </section>
 
-<!-- Chart-Bereich -->
-<section id="chart" class="py-10">
-  <div class="max-w-7xl mx-auto px-4">
-    <!-- data-i18n="chartTitle" -->
-    <h2 class="text-2xl font-bold mb-4" data-i18n="chartTitle">CO₂-Emissionen nach Ländern</h2>
-    <canvas id="co2Chart"></canvas>
-  </div>
-</section>
+  <!-- Chart-Bereich -->
+  <section id="chart" class="py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-4" data-i18n="chartTitle">CO₂-Emissionen nach Ländern</h2>
+      <canvas id="co2Chart" aria-label="Diagramm der CO₂-Emissionen" role="img"></canvas>
+    </div>
+  </section>
 
-<!-- Hauptbereich: Daten (Filter & Tabelle) -->
-<section id="data" class="py-10">
-  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
-    <!-- Sidebar / Lokales Menü -->
-    <aside class="lg:col-span-1 bg-white rounded-lg shadow p-6">
-      <h2 class="text-xl font-semibold mb-4" data-i18n="sidebarMenuTitle">Menü</h2>
-      <ul class="space-y-3">
-        <!-- Länder mit Untermenü -->
-        <li>
-          <button class="w-full text-left text-green-700 hover:text-green-800 transition-colors
-                     focus:outline-none sidebar-toggle"
-                  data-target="country-menu"
-                  data-i18n="sidebarCountries">
-            Länder
-          </button>
-          <ul id="country-menu" class="mt-2 space-y-2 hidden">
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Deutschland</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">USA</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">China</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Frankreich</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Großbritannien</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Italien</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Kanada</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Japan</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Australien</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Indien</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Brasilien</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Russland</a></li>
+  <!-- Datenbereich (Filter und Tabelle) -->
+  <section id="data" class="py-10">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <!-- Sidebar als aside -->
+      <aside class="lg:col-span-1 bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-4" data-i18n="sidebarMenuTitle">Menü</h2>
+        <nav>
+          <ul class="space-y-3">
+            <li>
+              <button class="w-full text-left text-green-700 hover:text-green-800 transition-colors focus:outline-none sidebar-toggle" data-target="country-menu" data-i18n="sidebarCountries">
+                Länder
+              </button>
+              <ul id="country-menu" class="mt-2 space-y-2 hidden">
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Deutschland</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">USA</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">China</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Frankreich</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Großbritannien</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Italien</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Kanada</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Japan</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Australien</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Indien</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Brasilien</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Russland</a></li>
+              </ul>
+            </li>
+            <li>
+              <button class="w-full text-left text-green-700 hover:text-green-800 transition-colors focus:outline-none sidebar-toggle" data-target="company-menu" data-i18n="sidebarCompanies">
+                Unternehmen
+              </button>
+              <ul id="company-menu" class="mt-2 space-y-2 hidden">
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Volkswagen</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">BASF</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">ExxonMobil</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Chevron</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Sinopec</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">PetroChina</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">TotalEnergies</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Engie</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">BP</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">GlaxoSmithKline</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Eni</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Fiat</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Suncor</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Imperial Oil</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Toyota</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Mitsubishi</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">BHP</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Woodside</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Reliance Industries</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Tata Motors</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Petrobras</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Vale</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Rosneft</a></li>
+                <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Gazprom</a></li>
+              </ul>
+            </li>
           </ul>
-        </li>
+        </nav>
+      </aside>
 
-        <!-- Unternehmen mit Untermenü -->
-        <li>
-          <button class="w-full text-left text-green-700 hover:text-green-800 transition-colors
-                     focus:outline-none sidebar-toggle"
-                  data-target="company-menu"
-                  data-i18n="sidebarCompanies">
-            Unternehmen
-          </button>
-          <ul id="company-menu" class="mt-2 space-y-2 hidden">
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Volkswagen</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">BASF</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">ExxonMobil</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Chevron</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Sinopec</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">PetroChina</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">TotalEnergies</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Engie</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">BP</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">GlaxoSmithKline</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Eni</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Fiat</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Suncor</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Imperial Oil</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Toyota</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Mitsubishi</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">BHP</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Woodside</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Reliance Industries</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Tata Motors</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Petrobras</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Vale</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Rosneft</a></li>
-            <li><a href="#" class="sidebar-link block text-green-600 hover:text-green-800 transition-colors">Gazprom</a></li>
-          </ul>
-        </li>
-      </ul>
-    </aside>
+      <!-- Hauptbereich: Filter und Datenanzeige -->
+      <section class="lg:col-span-3">
+        <!-- Filterbereich -->
+        <article class="bg-white rounded-lg shadow p-6 mb-6">
+          <h2 class="text-2xl font-bold mb-4" data-i18n="filterTitle">Filtere die Emissionsdaten</h2>
+          <form id="filter-form" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label for="filter" class="block text-sm font-medium text-gray-700" data-i18n="filterLabelCountry">Land</label>
+              <select id="filter" name="country" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
+                <option value="Alle" data-i18n="optionAll">Alle</option>
+              </select>
+            </div>
+            <div>
+              <label for="company-filter" class="block text-sm font-medium text-gray-700" data-i18n="filterLabelCompany">Unternehmen</label>
+              <select id="company-filter" name="company" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
+                <option value="Alle" data-i18n="optionAll">Alle</option>
+              </select>
+            </div>
+            <div>
+              <label for="co2-filter" class="block text-sm font-medium text-gray-700" data-i18n="filterLabelEmission">Emissionen (Mt CO₂)</label>
+              <input type="range" id="co2-filter" name="emission" min="0" max="500" step="10" value="0" class="mt-1 w-full">
+              <p id="co2-value" class="text-sm text-gray-500 mt-1">0+ Mt CO₂</p>
+            </div>
+            <div class="sm:col-span-3 text-right">
+              <button type="reset"
+                      class="mt-2 inline-flex items-center px-5 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm bg-green-700 hover:bg-green-800 text-white transition-colors"
+                      data-i18n="btnReset">
+                Filter zurücksetzen
+              </button>
+            </div>
+          </form>
+        </article>
 
-    <!-- Hauptinhalt: Filter & Tabelle -->
-    <main class="lg:col-span-3 space-y-6">
-      <!-- Filterbereich -->
-      <section class="bg-white rounded-lg shadow p-6">
-        <!-- data-i18n="filterTitle" -->
-        <h2 class="text-2xl font-bold mb-4" data-i18n="filterTitle">Filtere die Emissionsdaten</h2>
-        <form id="filter-form" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <label for="filter" class="block text-sm font-medium text-gray-700" data-i18n="filterLabelCountry">Land</label>
-            <select id="filter" name="country" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
-              <option value="Alle" data-i18n="optionAll">Alle</option>
-            </select>
-          </div>
-          <div>
-            <label for="company-filter" class="block text-sm font-medium text-gray-700" data-i18n="filterLabelCompany">Unternehmen</label>
-            <select id="company-filter" name="company" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
-              <option value="Alle" data-i18n="optionAll">Alle</option>
-            </select>
-          </div>
-          <div>
-            <label for="co2-filter" class="block text-sm font-medium text-gray-700" data-i18n="filterLabelEmission">Emissionen (Mt CO₂)</label>
-            <input type="range" id="co2-filter" name="emission" min="0" max="500" step="10" value="0" class="mt-1 w-full">
-            <p id="co2-value" class="text-sm text-gray-500 mt-1">0+ Mt CO₂</p>
-          </div>
-          <!-- Reset-Button -->
-          <div class="sm:col-span-3 text-right">
-            <button type="reset"
-                    class="mt-2 inline-flex items-center px-5 py-2 border border-transparent text-sm font-medium
-                           rounded-md shadow-sm bg-green-700 hover:bg-green-800 text-white transition-colors"
-                    data-i18n="btnReset"
-            >Filter zurücksetzen</button>
-          </div>
-        </form>
+        <!-- Tabelle -->
+        <article class="bg-white rounded-lg shadow overflow-x-auto">
+          <table id="co2-table" class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-green-700">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-white cursor-pointer hover:bg-green-800 transition-colors" onclick="sortTable(0)" data-i18n="tableHeaderLand">Land</th>
+              <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-white cursor-pointer hover:bg-green-800 transition-colors" onclick="sortTable(1)" data-i18n="tableHeaderCompany">Unternehmen</th>
+              <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-white cursor-pointer hover:bg-green-800 transition-colors" onclick="sortTable(2)" data-i18n="tableHeaderEmission">Emissionen (Mt CO₂)</th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            <tr id="placeholder-row">
+              <td colspan="3" class="px-6 py-4 text-center text-gray-500" data-i18n="tableLoading">Daten werden geladen...</td>
+            </tr>
+            </tbody>
+          </table>
+        </article>
       </section>
+    </div>
+  </section>
 
-      <!-- Tabelle -->
-      <section class="bg-white rounded-lg shadow overflow-x-auto">
-        <table id="co2-table" class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-green-700">
-          <tr>
-            <!-- data-i18n="tableHeaderLand" etc. -->
-            <th scope="col"
-                class="px-6 py-3 text-left text-sm font-medium text-white cursor-pointer hover:bg-green-800 transition-colors"
-                onclick="sortTable(0)"
-                data-i18n="tableHeaderLand"
-            >Land</th>
-            <th scope="col"
-                class="px-6 py-3 text-left text-sm font-medium text-white cursor-pointer hover:bg-green-800 transition-colors"
-                onclick="sortTable(1)"
-                data-i18n="tableHeaderCompany"
-            >Unternehmen</th>
-            <th scope="col"
-                class="px-6 py-3 text-left text-sm font-medium text-white cursor-pointer hover:bg-green-800 transition-colors"
-                onclick="sortTable(2)"
-                data-i18n="tableHeaderEmission"
-            >Emissionen (Mt CO₂)</th>
-          </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
-          <tr id="placeholder-row">
-            <td colspan="3" class="px-6 py-4 text-center text-gray-500" data-i18n="tableLoading">Daten werden geladen...</td>
-          </tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
-  </div>
-</section>
+  <!-- Über uns -->
+  <section id="about" class="py-10 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-bold" data-i18n="aboutTitle">Über uns</h2>
+      <p class="mt-4 text-gray-700" data-i18n="aboutText">
+        Hier findest du Informationen zur Organisation, zu unserem Team und zu unserer Mission, den Klimawandel transparent zu machen.
+      </p>
+    </div>
+  </section>
 
-<!-- Über uns -->
-<section id="about" class="py-10 bg-gray-100">
-  <div class="max-w-7xl mx-auto px-4">
-    <!-- data-i18n="aboutTitle" / "aboutText" -->
-    <h2 class="text-2xl font-bold" data-i18n="aboutTitle">Über uns</h2>
-    <p class="mt-4 text-gray-700" data-i18n="aboutText">
-      Hier findest du Informationen zur Organisation, zu unserem Team und zu unserer Mission, den Klimawandel transparent zu machen.
-    </p>
-  </div>
-</section>
-
-<!-- Kontakt -->
-<section id="contact" class="py-10">
-  <div class="max-w-7xl mx-auto px-4">
-    <h2 class="text-2xl font-bold" data-i18n="contactTitle">Kontakt</h2>
-    <p class="mt-4 text-gray-700" data-i18n="contactText">
-      Hier stehen unsere Kontaktinformationen oder ein Kontaktformular, über das du uns erreichen kannst.
-    </p>
-  </div>
-</section>
+  <!-- Kontakt -->
+  <section id="contact" class="py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-bold" data-i18n="contactTitle">Kontakt</h2>
+      <p class="mt-4 text-gray-700" data-i18n="contactText">
+        Hier stehen unsere Kontaktinformationen oder ein Kontaktformular, über das du uns erreichen kannst.
+      </p>
+    </div>
+  </section>
+</main>
 
 <!-- Footer -->
 <footer class="bg-green-700 text-white">
   <div class="max-w-7xl mx-auto px-4 py-4 text-center">
-    <!-- data-i18n="footerCopyright" -->
-    <p data-i18n="footerCopyright">
-      &copy; 2024 CO₂-Footprint. Alle Rechte vorbehalten.
-    </p>
-    <!-- data-i18n="footerImprint" -->
+    <p data-i18n="footerCopyright">&copy; 2024 CO₂-Footprint. Alle Rechte vorbehalten.</p>
     <p data-i18n="footerImprint" class="text-sm">Impressum | Datenschutz | Nutzungsbedingungen</p>
   </div>
-
-  <!-- Sprache -->
-  <div class="relative">
-    <select id="language-switcher"
-            class="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-white
-                   rounded px-4 py-2 cursor-pointer">
+  <div class="relative text-center pb-4">
+    <label for="language-switcher" class="sr-only">Sprache wählen</label>
+    <select id="language-switcher" class="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-white rounded px-4 py-2 cursor-pointer">
       <option value="de">🇩🇪 Deutsch</option>
       <option value="en">🇬🇧 English</option>
       <option value="fr">🇫🇷 Français</option>
