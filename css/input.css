@@ -2,48 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================
-   Standard-Stile
-   ============================ */
+/* ======================================================
+   Basis-/Reset-Stile
+   (Tailwind bringt bereits einen Reset mit, weitere können hier ergänzt werden)
+====================================================== */
+
+/* ======================================================
+   Komponenten – BEM-Strukturierung
+====================================================== */
+
+/* Beispiel: Custom Box (Block: custom-box) */
 .custom-box {
     @apply bg-gray-100 p-5 rounded-lg shadow;
 }
 
+/* Beispiel: Button-Komponente (Block: btn, Modifier: --primary) */
 .btn {
     @apply bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700;
 }
 
-/* ============================
-   Darkmode-Stile (Optimierte Farben)
-   ============================ */
+
+/* ======================================================
+   Darkmode-Stile – Mit BEM-Anpassung
+====================================================== */
+
+/* Darkmode: Basis für den Body */
 .dark body {
-    @apply bg-gray-950 text-gray-200; /* Sehr dunkler Hintergrund, leicht graue Schrift */
+    @apply bg-gray-950 text-gray-200;
 }
 
+/* Darkmode: Header */
 .dark header {
-    @apply bg-gray-900 text-white border-b border-gray-700; /* Dunkler Header, etwas abgesetzt */
+    @apply bg-gray-900 text-white border-b border-gray-700;
 }
 
-.dark .bg-white {
-    @apply bg-gray-800 text-gray-200; /* Grau statt weiß für alle Boxen */
+/* Darkmode: Anpassung für Custom Box (Block: custom-box) */
+.dark .custom-box {
+    @apply bg-gray-800 text-gray-200;
 }
 
+/* Darkmode: Anpassung für Texte mit .text-black */
 .dark .text-black {
-    @apply text-gray-300; /* Nicht komplett weiß, sondern leicht grau */
+    @apply text-gray-300;
 }
 
+/* Darkmode: Select-Elemente */
 .dark select {
     @apply bg-gray-800 text-white border-gray-600;
 }
 
+/* Darkmode: About-Sektion */
 .dark #about {
-    @apply bg-gray-800 text-gray-300; /* Etwas heller als der Body-Hintergrund */
+    @apply bg-gray-800 text-gray-300;
 }
-
 .dark #about p {
-    @apply text-gray-400; /* Dezentes Grau für bessere Lesbarkeit */
+    @apply text-gray-400;
 }
 
+/* Darkmode: Footer */
 .dark footer {
-    @apply bg-gray-900 text-gray-300 border-t border-gray-700; /* Gleiche Farbe wie Header */
+    @apply bg-gray-900 text-gray-300 border-t border-gray-700;
+}
+
+/* Darkmode: Button-Variante (Modifier: btn--primary im Darkmode) */
+.dark .btn {
+    @apply bg-blue-600 hover:bg-blue-800;
 }

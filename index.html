@@ -18,17 +18,16 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
-
 <!-- Header inkl. Navigation -->
-<header class="fixed top-0 left-0 right-0 bg-green-700 text-white shadow-lg z-50">
+<header class="fixed top-0 left-0 right-0 bg-green-700 text-white shadow-lg z-50" role="banner">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-    <div class="logo-container flex items-center space-x-3">
+    <div class="logo-container flex items-center space-x-3" role="img" aria-label="Logo CO₂-Footprint">
       <div class="logo w-10 h-10 bg-white rounded-full flex items-center justify-center">
         <span class="text-green-700 font-bold" data-i18n="logoShort">CF</span>
       </div>
       <span class="font-bold text-xl" data-i18n="logoFull">CO₂-Footprint</span>
     </div>
-    <nav class="desktop-nav hidden md:block">
+    <nav class="desktop-nav hidden md:block" role="navigation" aria-label="Hauptnavigation">
       <ul class="flex space-x-6">
         <li><a href="#home" class="hover:underline transition-colors duration-200" data-i18n="navHome">Home</a></li>
         <li><a href="#data" class="hover:underline transition-colors duration-200" data-i18n="navData">Daten</a></li>
@@ -36,9 +35,9 @@
         <li><a href="#contact" class="hover:underline transition-colors duration-200" data-i18n="navContact">Kontakt</a></li>
       </ul>
     </nav>
-    <!-- Darkmode-Schalter -->
     <div class="flex items-center space-x-4">
-      <label class="relative inline-flex items-center cursor-pointer">
+      <!-- Darkmode-Schalter -->
+      <label class="relative inline-flex items-center cursor-pointer" aria-label="Dark Mode umschalten">
         <input type="checkbox" id="dark-mode-toggle" class="sr-only peer">
         <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-700 rounded-full peer dark:bg-gray-700
                       peer-checked:after:translate-x-full peer-checked:after:border-white
@@ -48,7 +47,7 @@
         </div>
       </label>
       <!-- Burger-Button für Mobile -->
-      <button id="burger-btn" class="md:hidden focus:outline-none" aria-label="Menü öffnen">
+      <button id="burger-btn" class="md:hidden focus:outline-none" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
         </svg>
@@ -56,7 +55,7 @@
     </div>
   </div>
   <!-- Mobile Navigation -->
-  <nav id="mobile-menu" class="mobile-nav md:hidden hidden bg-green-700">
+  <nav id="mobile-menu" class="mobile-nav md:hidden hidden bg-green-700" role="navigation" aria-label="Mobile Navigation">
     <ul class="px-4 pt-2 pb-4 space-y-1">
       <li><a href="#home" class="block hover:underline transition-colors duration-200" data-i18n="navHome">Home</a></li>
       <li><a href="#data" class="block hover:underline transition-colors duration-200" data-i18n="navData">Daten</a></li>
@@ -67,9 +66,9 @@
 </header>
 
 <!-- Hauptinhalt -->
-<main>
+<main role="main">
   <!-- Home-Bereich -->
-  <section id="home" class="py-10">
+  <section id="home" class="py-10 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4">
       <h1 class="text-3xl font-bold" data-i18n="homeTitle">Willkommen bei CO₂-Footprint</h1>
       <p class="mt-4 text-gray-600" data-i18n="homeIntro">
@@ -79,7 +78,7 @@
   </section>
 
   <!-- Chart-Bereich -->
-  <section id="chart" class="py-10">
+  <section id="chart" class="py-10 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4">
       <h2 class="text-2xl font-bold mb-4" data-i18n="chartTitle">CO₂-Emissionen nach Ländern</h2>
       <canvas id="co2Chart" aria-label="Diagramm der CO₂-Emissionen" role="img"></canvas>
@@ -90,9 +89,9 @@
   <section id="data" class="py-10">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
       <!-- Sidebar als aside -->
-      <aside class="lg:col-span-1 bg-white rounded-lg shadow p-6">
+      <aside class="lg:col-span-1 py-10 bg-white dark:bg-gray-900 rounded-lg shadow p-6" role="complementary" aria-label="Filtermenü">
         <h2 class="text-xl font-semibold mb-4" data-i18n="sidebarMenuTitle">Menü</h2>
-        <nav>
+        <nav aria-label="Sidebar Menü">
           <ul class="space-y-3">
             <li>
               <button class="w-full text-left text-green-700 hover:text-green-800 transition-colors focus:outline-none sidebar-toggle" data-target="country-menu" data-i18n="sidebarCountries">
@@ -151,9 +150,9 @@
       <!-- Hauptbereich: Filter und Datenanzeige -->
       <section class="lg:col-span-3">
         <!-- Filterbereich -->
-        <article class="bg-white rounded-lg shadow p-6 mb-6">
+        <article class="py-10 bg-white dark:bg-gray-900 rounded-lg shadow p-6 mb-6">
           <h2 class="text-2xl font-bold mb-4" data-i18n="filterTitle">Filtere die Emissionsdaten</h2>
-          <form id="filter-form" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <form id="filter-form" class="grid grid-cols-1 sm:grid-cols-3 gap-4" role="form" aria-label="Filterformular">
             <div>
               <label for="filter" class="block text-sm font-medium text-gray-700" data-i18n="filterLabelCountry">Land</label>
               <select id="filter" name="country" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-700 focus:border-green-700">
@@ -168,13 +167,11 @@
             </div>
             <div>
               <label for="co2-filter" class="block text-sm font-medium text-gray-700" data-i18n="filterLabelEmission">Emissionen (Mt CO₂)</label>
-              <input type="range" id="co2-filter" name="emission" min="0" max="500" step="10" value="0" class="mt-1 w-full">
+              <input type="range" id="co2-filter" name="emission" min="0" max="500" step="10" value="0" class="mt-1 w-full" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0" aria-label="CO₂-Emissionen Filter">
               <p id="co2-value" class="text-sm text-gray-500 mt-1">0+ Mt CO₂</p>
             </div>
             <div class="sm:col-span-3 text-right">
-              <button type="reset"
-                      class="mt-2 inline-flex items-center px-5 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm bg-green-700 hover:bg-green-800 text-white transition-colors"
-                      data-i18n="btnReset">
+              <button type="reset" class="mt-2 inline-flex items-center px-5 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm bg-green-700 hover:bg-green-800 text-white transition-colors" data-i18n="btnReset">
                 Filter zurücksetzen
               </button>
             </div>
@@ -182,8 +179,8 @@
         </article>
 
         <!-- Tabelle -->
-        <article class="bg-white rounded-lg shadow overflow-x-auto">
-          <table id="co2-table" class="min-w-full divide-y divide-gray-200">
+        <article class="py-10 bg-white dark:bg-gray-900 rounded-lg shadow overflow-x-auto">
+          <table id="co2-table" class="min-w-full divide-y divide-gray-200" role="table">
             <thead class="bg-green-700">
             <tr>
               <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-white cursor-pointer hover:bg-green-800 transition-colors" onclick="sortTable(0)" data-i18n="tableHeaderLand">Land</th>
@@ -191,7 +188,7 @@
               <th scope="col" class="px-6 py-3 text-left text-sm font-medium text-white cursor-pointer hover:bg-green-800 transition-colors" onclick="sortTable(2)" data-i18n="tableHeaderEmission">Emissionen (Mt CO₂)</th>
             </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody class="py-10 bg-white dark:bg-gray-900 divide-y divide-gray-200">
             <tr id="placeholder-row">
               <td colspan="3" class="px-6 py-4 text-center text-gray-500" data-i18n="tableLoading">Daten werden geladen...</td>
             </tr>
@@ -203,9 +200,9 @@
   </section>
 
   <!-- Über uns -->
-  <section id="about" class="py-10 bg-gray-100">
+  <section id="about" class="py-10 bg-gray-100" aria-labelledby="about-heading">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-2xl font-bold" data-i18n="aboutTitle">Über uns</h2>
+      <h2 id="about-heading" class="text-2xl font-bold" data-i18n="aboutTitle">Über uns</h2>
       <p class="mt-4 text-gray-700" data-i18n="aboutText">
         Hier findest du Informationen zur Organisation, zu unserem Team und zu unserer Mission, den Klimawandel transparent zu machen.
       </p>
@@ -213,9 +210,9 @@
   </section>
 
   <!-- Kontakt -->
-  <section id="contact" class="py-10">
+  <section id="contact" class="py-10" aria-labelledby="contact-heading">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-2xl font-bold" data-i18n="contactTitle">Kontakt</h2>
+      <h2 id="contact-heading" class="text-2xl font-bold" data-i18n="contactTitle">Kontakt</h2>
       <p class="mt-4 text-gray-700" data-i18n="contactText">
         Hier stehen unsere Kontaktinformationen oder ein Kontaktformular, über das du uns erreichen kannst.
       </p>
@@ -224,7 +221,7 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-green-700 text-white">
+<footer class="bg-green-700 text-white" role="contentinfo">
   <div class="max-w-7xl mx-auto px-4 py-4 text-center">
     <p data-i18n="footerCopyright">&copy; 2024 CO₂-Footprint. Alle Rechte vorbehalten.</p>
     <p data-i18n="footerImprint" class="text-sm">Impressum | Datenschutz | Nutzungsbedingungen</p>
