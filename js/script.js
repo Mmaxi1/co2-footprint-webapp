@@ -99,6 +99,38 @@ const translations = {
         contactText: "Ici se trouvent nos informations de contact ...",
         footerCopyright: "© 2024 CO₂-Footprint. Tous droits réservés.",
         footerImprint: "Mentions légales | Confidentialité | Conditions"
+    },
+    ar: {
+        pageTitle: "بصمة الكربون – نظرة عامة على الانبعاثات",
+        logoShort: "بص",
+        logoFull: "بصمة الكربون",
+        navHome: "الرئيسية",
+        navData: "البيانات",
+        navAbout: "معلومات عنا",
+        navContact: "اتصل بنا",
+        homeTitle: "مرحبًا بك في بصمة الكربون",
+        homeIntro: "احصل على نظرة عامة على انبعاثات ثاني أكسيد الكربون من الدول والشركات.",
+        chartTitle: "انبعاثات ثاني أكسيد الكربون حسب الدولة",
+        sidebarMenuTitle: "القائمة",
+        sidebarCountries: "الدول",
+        sidebarCompanies: "الشركات",
+        filterTitle: "قم بتصفية بيانات الانبعاثات",
+        filterLabelCountry: "الدولة",
+        filterLabelCompany: "الشركة",
+        filterLabelEmission: "الانبعاثات (مليون طن من CO₂)",
+        filterEmissionValue: "+0 مليون طن من CO₂",
+        optionAll: "الكل",
+        btnReset: "إعادة تعيين الفلاتر",
+        tableHeaderLand: "الدولة",
+        tableHeaderCompany: "الشركة",
+        tableHeaderEmission: "الانبعاثات (مليون طن من CO₂)",
+        tableLoading: "جاري تحميل البيانات...",
+        aboutTitle: "معلومات عنا",
+        aboutText: "هنا يمكنك العثور على معلومات حول المنظمة وفريقنا ومهمتنا لزيادة الشفافية حول تغير المناخ.",
+        contactTitle: "اتصل بنا",
+        contactText: "تجد هنا معلومات الاتصال أو نموذج الاتصال للتواصل معنا.",
+        footerCopyright: "© 2024 بصمة الكربون. جميع الحقوق محفوظة.",
+        footerImprint: "البيان القانوني | سياسة الخصوصية | الشروط"
     }
 };
 
@@ -165,6 +197,10 @@ const initLanguage = () => {
 const updateLanguage = (lang) => {
     console.log("Wechsle Sprache zu:", lang);
     document.documentElement.setAttribute("lang", lang);
+    // Sprachrichtung (LTR oder RTL) setzen
+    const rtlLanguages = ["ar", "he", "fa"];
+    const dir = rtlLanguages.includes(lang) ? "rtl" : "ltr";
+    document.documentElement.setAttribute("dir", dir);
     document.querySelectorAll("[data-i18n]").forEach(elem => {
         const key = elem.getAttribute("data-i18n");
         if (translations[lang] && translations[lang][key]) {
@@ -279,13 +315,33 @@ const populateTable = (data) => {
     tbody.innerHTML = "";
     data.forEach(entry => {
         const row = document.createElement("tr");
-        row.innerHTML = `
-      <td class="p-3">${entry.land}</td>
-      <td class="p-3">${entry.unternehmen}</td>
-      <td class="p-3">${entry.emissionen}</td>
-    `;
+
+        const tdLand = document.createElement("td");
+        tdLand.className = "p-3";
+        tdLand.textContent = entry.land;
+
+        const tdCompany = document.createElement("td");
+        tdCompany.className = "p-3";
+        tdCompany.textContent = entry.unternehmen;
+
+        const tdEmission = document.createElement("td");
+        tdEmission.className = "p-3";
+        tdEmission.textContent = entry.emissionen;
+
+        row.appendChild(tdLand);
+        row.appendChild(tdCompany);
+        row.appendChild(tdEmission);
+
         tbody.appendChild(row);
     });
+
+    // Summenanzeige ergänzen
+    const sum = data.reduce((total, entry) => total + entry.emissionen, 0);
+    const sumElement = document.getElementById("emission-sum");
+    if (sumElement) {
+        sumElement.textContent = `Total: ${sum.toFixed(1)} Mt CO₂`;
+    }
+
     console.log("Tabelle erfolgreich befüllt.");
 };
 
@@ -418,3 +474,11 @@ const sortTable = (columnIndex) => {
     });
     populateTable(sortedData);
 };
+
+// Neue Summe berechnen und anzeigen
+const sum = data.reduce((total, entry) => total + entry.emissionen, 0);
+const sumElement = document.getElementById("emission-sum");
+if (sumElement) {
+    sumElement.textContent = `Total: ${sum.toFixed(1)} Mt CO₂`;
+}
+

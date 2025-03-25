@@ -89,7 +89,7 @@
   <section id="data" class="py-10">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
       <!-- Sidebar als aside -->
-      <aside class="lg:col-span-1 py-10 bg-white dark:bg-gray-900 rounded-lg shadow p-6" role="complementary" aria-label="Filtermenü">
+      <aside class="lg:col-span-1 py-10 bg-white dark:bg-gray-900 rounded-lg shadow p-6 float-start rtl:float-end" role="complementary" aria-label="Filtermenü">
         <h2 class="text-xl font-semibold mb-4" data-i18n="sidebarMenuTitle">Menü</h2>
         <nav aria-label="Sidebar Menü">
           <ul class="space-y-3">
@@ -148,7 +148,7 @@
       </aside>
 
       <!-- Hauptbereich: Filter und Datenanzeige -->
-      <section class="lg:col-span-3">
+      <section class="lg:col-span-3 float-end rtl:float-start">
         <!-- Filterbereich -->
         <article class="py-10 bg-white dark:bg-gray-900 rounded-lg shadow p-6 mb-6">
           <h2 class="text-2xl font-bold mb-4" data-i18n="filterTitle">Filtere die Emissionsdaten</h2>
@@ -194,6 +194,9 @@
             </tr>
             </tbody>
           </table>
+          <div id="emission-sum" class="mt-4 text-right font-semibold text-green-700">
+            Total: 0 Mt CO₂
+          </div>
         </article>
       </section>
     </div>
@@ -232,6 +235,7 @@
       <option value="de">🇩🇪 Deutsch</option>
       <option value="en">🇬🇧 English</option>
       <option value="fr">🇫🇷 Français</option>
+      <option value="ar">🇸🇦 العربية</option>
     </select>
   </div>
 </footer>
