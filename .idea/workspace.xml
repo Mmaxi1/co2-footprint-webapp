@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c96db39-9ef8-4d05-969a-695a5570978d" name="Changes" comment="update semantik and structure">
+    <list default="true" id="4c96db39-9ef8-4d05-969a-695a5570978d" name="Changes" comment="Final check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/emissions.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/emissions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +106,7 @@
       <workItem from="1741961313061" duration="58000" />
       <workItem from="1741961462597" duration="33169000" />
       <workItem from="1742650744428" duration="763000" />
-      <workItem from="1742735343367" duration="16483000" />
+      <workItem from="1742735343367" duration="22729000" />
     </task>
     <task id="LOCAL-00001" summary="Grundlayout und Navigation erstellt">
       <option name="closed" value="true" />
@@ -168,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742735691593</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Final check">
+      <option name="closed" value="true" />
+      <created>1742914193411</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742914193411</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,7 +183,8 @@
     <MESSAGE value="Grundlayout und Navigation erstellt" />
     <MESSAGE value="Grundlayout" />
     <MESSAGE value="update semantik and structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="update semantik and structure" />
+    <MESSAGE value="Final check" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
